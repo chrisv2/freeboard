@@ -30,7 +30,7 @@ Freeboard can be run entirely from a local hard drive. Simply download/clone the
 3. npm install
 4. grunt
 
-Then run a index.html or index-dev.html through a webserver.
+Then run a index.html or index-dev.html through a webserver, or use 'grunt serve' and navigate to localhost:9000/index.html in a browser.
 
 ### API
 
@@ -175,7 +175,7 @@ $(function()
 });
 ```
 
-### Copyright 
+### Copyright
 
 Copyright © 2013 Jim Heising (https://github.com/jheising)<br/>Copyright © 2013 Bug Labs, Inc. (http://buglabs.net)<br/>Licensed under the **MIT** license.
 
