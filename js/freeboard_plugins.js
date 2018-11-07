@@ -3527,7 +3527,72 @@ $.extend(freeboard, jQuery.eventEmitter);
 			newInstanceCallback(new clockDatasource(settings, updateCallback));
 		}
 	});
-freeboard.loadDatasourcePlugin({
+
+
+	var randomDatasource = function (settings, updateCallback) {
+		var self = this;
+		var currentSettings = settings;
+		var timer;
+
+		function stopTimer() {
+			if (timer) {
+				clearTimeout(timer);
+				timer = null;
+			}
+		}
+
+		function updateTimer() {
+			stopTimer();
+			timer = setInterval(self.updateNow, currentSettings.refresh * 1000);
+		}
+
+		this.updateNow = function () {
+			var number = Math.floor(Math.random()*(currentSettings.max-currentSettings.min+1)+currentSettings.min)
+			updateCallback({number: number});
+		}
+
+		this.onDispose = function () {
+			stopTimer();
+		}
+
+		this.onSettingsChanged = function (newSettings) {
+			currentSettings = newSettings;
+			updateTimer();
+		}
+
+		updateTimer();
+	};
+
+	freeboard.loadDatasourcePlugin({
+		"type_name": "random",
+		"display_name": "Random",
+		"settings": [
+			{
+				"name": "refresh",
+				"display_name": "Refresh Every",
+				"type": "number",
+				"suffix": "seconds",
+				"default_value": 1
+			},
+			{
+				"name": "min",
+				"display_name": "Minimum value",
+				"type": "number",
+				"default_value": 1
+			},
+			{
+				"name": "max",
+				"display_name": "Maximum value",
+				"type": "number",
+				"default_value": 100
+			},
+		],
+		newInstance: function (settings, newInstanceCallback, updateCallback) {
+			newInstanceCallback(new randomDatasource(settings, updateCallback));
+		}
+	});
+
+	freeboard.loadDatasourcePlugin({
 		// **type_name** (required) : A unique name for this plugin. This name should be as unique as possible to avoid collisions with other plugins, and should follow naming conventions for javascript variable and function declarations.
 		"type_name"   : "meshblu",
 		// **display_name** : The pretty name that will be used for display purposes for this plugin. If the name is not defined, type_name will be used instead.
@@ -3596,7 +3661,7 @@ freeboard.loadDatasourcePlugin({
                 // **required** : Set to true if this setting is required for the datasource to be created.
                 "required" : true
 			}
-			
+
 		],
 		// **newInstance(settings, newInstanceCallback, updateCallback)** (required) : A function that will be called when a new instance of this plugin is requested.
 		// * **settings** : A javascript object with the initial settings set by the user. The names of the properties in the object will correspond to the setting names defined above.
@@ -3622,11 +3687,11 @@ freeboard.loadDatasourcePlugin({
 		// Good idea to create a variable to hold on to our settings, because they might change in the future. See below.
 		var currentSettings = settings;
 
-		
+
 
 		/* This is some function where I'll get my data from somewhere */
 
- 	
+
 		function getData()
 		{
 
@@ -3634,11 +3699,11 @@ freeboard.loadDatasourcePlugin({
 		 var conn = skynet.createConnection({
     		"uuid": currentSettings.uuid,
     		"token": currentSettings.token,
-    		"server": currentSettings.server, 
+    		"server": currentSettings.server,
     		"port": currentSettings.port
-  				});	
-			 
-			 conn.on('ready', function(data){	
+  				});
+
+			 conn.on('ready', function(data){
 
 			 	conn.on('message', function(message){
 
@@ -3650,7 +3715,7 @@ freeboard.loadDatasourcePlugin({
 			 });
 			}
 
-	
+
 
 		// **onSettingsChanged(newSettings)** (required) : A public function we must implement that will be called when a user makes a change to the settings.
 		self.onSettingsChanged = function(newSettings)
@@ -3669,7 +3734,7 @@ freeboard.loadDatasourcePlugin({
 		// **onDispose()** (required) : A public function we must implement that will be called when this instance of this plugin is no longer needed. Do anything you need to cleanup after yourself here.
 		self.onDispose = function()
 		{
-		
+
 			//conn.close();
 		}
 
