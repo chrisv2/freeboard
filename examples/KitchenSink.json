@@ -1,0 +1,267 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "highcharts-timeseries",
+					"settings": {
+						"timeframe": 60,
+						"blocks": 4,
+						"chartType": "spline",
+						"title": "Highchart: Spline",
+						"xaxis": "{\"title\":{\"text\" : \"Time\"}, \"type\": \"datetime\", \"floor\":0}",
+						"yaxis": "{\"title\":{\"text\" : \"Values\"}, \"minorTickInterval\":\"auto\", \"floor\":0}",
+						"series1": "datasources[\"random\"][\"number\"]",
+						"series1label": "Random 1",
+						"series2": "datasources[\"random2\"][\"number\"]",
+						"series2label": "Random 2"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "highcharts-timeseries",
+					"settings": {
+						"timeframe": 60,
+						"blocks": 4,
+						"chartType": "area",
+						"title": "Highchart: Area",
+						"xaxis": "{\"title\":{\"text\" : \"Time\"}, \"type\": \"datetime\", \"floor\":0}",
+						"yaxis": "{\"title\":{\"text\" : \"Values\"}, \"minorTickInterval\":\"auto\", \"floor\":0}",
+						"series1": "datasources[\"random\"][\"number\"]",
+						"series1label": "Random 1",
+						"series2": "datasources[\"random2\"][\"number\"]",
+						"series2label": "Random 2"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "actuator",
+					"settings": {
+						"title": "Actuator 1",
+						"value": "true",
+						"urlOn": " https://webhook.site/82f2dec7-0086-4c25-b9d2-a21de99ae2d9 ",
+						"urlOff": " https://webhook.site/82f2dec7-0086-4c25-b9d2-a21de99ae2d9 /off https://webhook.site/82f2dec7-0086-4c25-b9d2-a21de99ae2d9 ",
+						"urlMethod": "GET",
+						"on_text": "on",
+						"off_text": "off"
+					}
+				},
+				{
+					"type": "actuator",
+					"settings": {
+						"title": "Actuator 2",
+						"urlOn": " https://webhook.site/82f2dec7-0086-4c25-b9d2-a21de99ae2d9 ",
+						"urlOff": " https://webhook.site/82f2dec7-0086-4c25-b9d2-a21de99ae2d9 ",
+						"urlMethod": "GET",
+						"on_text": "on",
+						"off_text": "off"
+					}
+				},
+				{
+					"type": "switch_plugin",
+					"settings": {
+						"title": "Switch",
+						"urlOn": " https://webhook.site/82f2dec7-0086-4c25-b9d2-a21de99ae2d9 ",
+						"urlOff": " https://webhook.site/82f2dec7-0086-4c25-b9d2-a21de99ae2d9 ",
+						"urlMethod": "GET",
+						"on_text": "On",
+						"off_text": "Off"
+					}
+				},
+				{
+					"type": "slider_plugin",
+					"settings": {
+						"title": "Slider",
+						"min": "0",
+						"max": "100",
+						"value": "42",
+						"url": " https://webhook.site/82f2dec7-0086-4c25-b9d2-a21de99ae2d9 ",
+						"urlMethod": "POST"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 17
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Gauge",
+						"value": "datasources[\"random\"][\"number\"]",
+						"units": "bpm",
+						"min_value": 0,
+						"max_value": 100
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 17
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"size": "regular",
+						"value": "datasources[\"clock\"][\"date_string_value\"]",
+						"animate": true
+					}
+				},
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "",
+						"size": "regular",
+						"value": "datasources[\"clock\"][\"time_string_value\"]",
+						"sparkline": false,
+						"animate": true
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 17
+			},
+			"col": {
+				"3": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "picture",
+					"settings": {
+						"src": "https://placeimg.com/300/240/any",
+						"refresh": 15
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 23
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "pointer",
+					"settings": {
+						"direction": "datasources[\"direction\"][\"number\"]",
+						"value_text": "datasources[\"direction\"][\"number\"]",
+						"units": "Accel"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 11
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 3,
+			"widgets": [
+				{
+					"type": "sparkline",
+					"settings": {
+						"title": "Sparkline",
+						"value": [
+							"datasources[\"random2\"][\"number\"]"
+						]
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "random",
+			"type": "random",
+			"settings": {
+				"refresh": 1,
+				"min": 1,
+				"max": 100
+			}
+		},
+		{
+			"name": "random2",
+			"type": "random",
+			"settings": {
+				"refresh": 1,
+				"min": 25,
+				"max": 75
+			}
+		},
+		{
+			"name": "clock",
+			"type": "clock",
+			"settings": {
+				"refresh": 1
+			}
+		},
+		{
+			"name": "direction",
+			"type": "random",
+			"settings": {
+				"refresh": 1,
+				"min": 1,
+				"max": 360
+			}
+		}
+	],
+	"columns": 3
+}
